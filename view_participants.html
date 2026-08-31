@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Participants List</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th {
+            background: #003366;
+            color: white;
+            padding: 12px;
+            text-align: center;
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        /* Column widths */
+
+        th:nth-child(1),
+        td:nth-child(1) {
+            width: 8%;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+            width: 18%;
+        }
+
+        th:nth-child(3),
+        td:nth-child(3) {
+            width: 22%;
+        }
+
+        th:nth-child(4),
+        td:nth-child(4) {
+            width: 15%;
+        }
+
+        th:nth-child(5),
+        td:nth-child(5) {
+            width: 10%;
+        }
+
+        th:nth-child(6),
+        td:nth-child(6) {
+            width: 17%;
+        }
+
+        th:nth-child(7),
+        td:nth-child(7) {
+            width: 10%;
+        }
+
+        .actions {
+            white-space: nowrap;
+        }
+
+        .edit-btn,
+        .delete-btn,
+        .report-btn {
+
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            margin: 2px;
+
+        }
+
+        .edit-btn {
+            background: #28a745;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+        }
+
+        .report-btn {
+            background: #007bff;
+        }
+
+        .back-btn {
+
+            display: inline-block;
+            margin-bottom: 15px;
+            text-decoration: none;
+            background: #003366;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <a href="/" class="back-btn">
+        Back to Dashboard
+    </a>
+
+    <div class="container">
+
+        <h2>Participants List</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Start Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                    <th>Report</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for participant in participants %}
+
+                <tr>
+
+                    <td>{{ participant[0] }}</td>
+
+                    <td>{{ participant[1] }}</td>
+
+                    <td>{{ participant[2] }}</td>
+
+                    <td>{{ participant[3] }}</td>
+
+                    <td>
+
+                        {% if participant[4] == 1 %}
+                            Active
+                        {% else %}
+                            Inactive
+                        {% endif %}
+
+                    </td>
+
+                    <td class="actions">
+
+                        <a href="/edit_participant/{{ participant[0] }}"
+                           class="edit-btn">
+                            Edit
+                        </a>
+
+                        <a href="/delete_participant/{{ participant[0] }}"
+                           class="delete-btn"
+                           onclick="return confirm('Delete this participant?')">
+                            Delete
+                        </a>
+
+                    </td>
+
+                    <td>
+
+                        <a href="/download_report/{{ participant[0] }}"
+                           class="report-btn">
+                            Download PDF
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</body>
+</html>

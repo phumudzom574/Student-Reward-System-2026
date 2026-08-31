@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Goal Progress</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #003366;
+            color: white;
+            padding: 12px;
+            text-align: center;
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        .not-completed {
+            color: red;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            text-decoration: none;
+            background: #003366;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <a href="/" class="back-btn">Back to Dashboard</a>
+
+    <div class="container">
+
+        <h1>Goal Progress</h1>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Progress ID</th>
+                    <th>Goal ID</th>
+                    <th>Participant ID</th>
+                    <th>Current Points</th>
+                    <th>Completed</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for row in records %}
+
+                <tr>
+
+                    <td>{{ row[0] }}</td>
+
+                    <td>{{ row[2] }}</td>
+
+                    <td>{{ row[1] }}</td>
+
+                    <td>{{ row[3] }}</td>
+
+                    <td>
+                        {% if row[4] == 1 %}
+                            <span class="completed">Completed</span>
+                        {% else %}
+                            <span class="not-completed">Not Completed</span>
+                        {% endif %}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</body>
+</html>
