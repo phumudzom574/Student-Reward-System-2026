@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,4 +126,133 @@
     </div>
 
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Point Rules</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #003366;
+            color: white;
+            padding: 12px;
+            text-align: center;
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            text-decoration: none;
+            background: #003366;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .active {
+            color: green;
+            font-weight: bold;
+        }
+
+        .inactive {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <a href="/" class="back-btn">Back to Dashboard</a>
+
+    <div class="container">
+
+        <h2>Point Rules</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Activity</th>
+                    <th>Description</th>
+                    <th>Points</th>
+                    <th>Max Per Day</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for rule in rules %}
+
+                <tr>
+
+                    <td>{{ rule[0] }}</td>
+
+                    <td>{{ rule[1] }}</td>
+
+                    <td>{{ rule[2] }}</td>
+
+                    <td>{{ rule[3] }}</td>
+
+                    <td>{{ rule[4] }}</td>
+
+                    <td>
+                        {% if rule[5] == 1 %}
+                            <span class="active">Active</span>
+                        {% else %}
+                            <span class="inactive">Inactive</span>
+                        {% endif %}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</body>
+>>>>>>> origin/main
 </html>
