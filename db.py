@@ -1,9 +1,9 @@
 import mysql.connector
 
 def get_connection():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="student_reward_system"
-    )
+   return mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="123456",
+    database="student_reward_system"
+)
