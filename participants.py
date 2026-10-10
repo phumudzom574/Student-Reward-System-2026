@@ -6,7 +6,7 @@ def add_participant(name, email, startdate):
     cursor = conn.cursor()
 
     sql = """
-    INSERT INTO Participants
+    INSERT INTO participants
     (Name, Email, StartDate, Active)
     VALUES (%s, %s, %s, %s)
     """
@@ -22,7 +22,7 @@ def get_participants():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM Participants")
+    cursor.execute("SELECT * FROM participants")
 
     participants = cursor.fetchall()
 
@@ -37,7 +37,7 @@ def delete_participant(participant_id):
     cursor = conn.cursor()
 
     cursor.execute(
-        "DELETE FROM Participants WHERE ParticipantID = %s",
+        "DELETE FROM participants WHERE ParticipantID = %s",
         (participant_id,)
     )
 
@@ -51,7 +51,7 @@ def get_participant_by_id(participant_id):
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT * FROM Participants WHERE ParticipantID = %s",
+        "SELECT * FROM participants WHERE ParticipantID = %s",
         (participant_id,)
     )
 
@@ -63,13 +63,14 @@ def get_participant_by_id(participant_id):
     return participant
 
 
+
 def update_participant(participant_id, name, email, startdate):
     conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute(
         """
-        UPDATE Participants
+        UPDATE participants
         SET Name = %s,
             Email = %s,
             StartDate = %s

@@ -8,7 +8,7 @@ def add_transaction(participant_id, rule_id, activity_date, points, notes):
 
     cursor.execute(
         """
-        INSERT INTO PointTransactions
+        INSERT INTO pointtransactions
         (ParticipantID, RuleID, ActivityDate, Points, Notes)
         VALUES (%s, %s, %s, %s, %s)
         """,
@@ -26,7 +26,7 @@ def get_transactions():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM PointTransactions")
+    cursor.execute("SELECT * FROM pointtransactions")
 
     records = cursor.fetchall()
 
@@ -43,7 +43,7 @@ def get_history():
 
     cursor.execute("""
         SELECT *
-        FROM PointTransactions
+        FROM pointtransactions
         ORDER BY ActivityDate DESC
     """)
 

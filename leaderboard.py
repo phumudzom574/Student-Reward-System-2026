@@ -1,29 +1,34 @@
+
 from database import get_connection
 
 
 def get_leaderboard():
+    connection = get_connection()
 
-    conn = get_connection()
-    cursor = conn.cursor()
+    if connection is None:
+        return []
 
-    cursor.execute("""
-        SELECT
-            Participants.ParticipantID,
-            Participants.Name,
-            SUM(PointTransactions.Points) AS TotalPoints
-        FROM Participants
-        INNER JOIN PointTransactions
-            ON Participants.ParticipantID = PointTransactions.ParticipantID
-        GROUP BY
-            Participants.ParticipantID,
-            Participants.Name
-        ORDER BY
-            SUM(PointTransactions.Points) DESC
-    """)
+    cursor = connection.cursor(dictionary=True)
 
-    records = cursor.fetchall()
+    try:
+        cursor.execute("""
+            SELECT
+                participants.ParticipantID,
+                participants.Name,
+                SUM(pointtransactions.Points) AS TotalPoints
+            FROM participants
+            INNER JOIN pointtransactions
+                ON participants.ParticipantID =
+                   pointtransactions.ParticipantID
+            GROUP BY
+                participants.ParticipantID,
+                participants.Name
+            ORDER BY
+                TotalPoints DESC
+        """)
 
-    cursor.close()
-    conn.close()
+        return cursor.fetchall()
 
-    return records
+    finally:
+        cursor.close()
+        connection.close()

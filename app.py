@@ -1,4 +1,4 @@
-﻿from flask import Flask, render_template, request, redirect, session, send_file
+from flask import Flask, render_template, request, redirect, session, send_file
 
 from participants import (
     add_participant,
@@ -483,7 +483,7 @@ def download_report(participant_id):
     cursor.execute(
         """
         SELECT *
-        FROM Participants
+        FROM participants
         WHERE ParticipantID = %s
         """,
         (participant_id,)
@@ -506,7 +506,7 @@ def download_report(participant_id):
     cursor.execute(
         """
         SELECT COALESCE(SUM(Points), 0) AS TotalPoints
-        FROM PointTransactions
+        FROM pointtransactions
         WHERE ParticipantID = %s
         """,
         (participant_id,)
@@ -524,7 +524,7 @@ def download_report(participant_id):
     cursor.execute(
         """
         SELECT *
-        FROM Goals
+        FROM goals
         WHERE ParticipantID = %s
         ORDER BY StartDate DESC
         """,
@@ -541,7 +541,7 @@ def download_report(participant_id):
     cursor.execute(
         """
         SELECT *
-        FROM GoalProgress
+        FROM goalprogress
         WHERE ParticipantID = %s
         ORDER BY ProgressID DESC
         """,
@@ -558,7 +558,7 @@ def download_report(participant_id):
     cursor.execute(
         """
         SELECT *
-        FROM PointTransactions
+        FROM pointtransactions
         WHERE ParticipantID = %s
         ORDER BY ActivityDate DESC
         """,
