@@ -8,7 +8,7 @@ def add_goal(participant_id, start_date, end_date, target_points):
 
     cursor.execute(
         """
-        INSERT INTO goals
+        INSERT INTO Goals
         (ParticipantID, StartDate, EndDate, TargetPoints)
         VALUES (%s, %s, %s, %s)
         """,
@@ -26,7 +26,7 @@ def get_goals():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM goals")
+    cursor.execute("SELECT * FROM Goals")
 
     goals = cursor.fetchall()
 

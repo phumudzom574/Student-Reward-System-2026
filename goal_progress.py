@@ -8,7 +8,7 @@ def add_goal_progress(goal_id, participant_id, current_points, completed):
 
     cursor.execute(
         """
-        INSERT INTO goalprogress
+        INSERT INTO GoalProgress
         (GoalID, ParticipantID, CurrentPoints, Completed)
         VALUES (%s, %s, %s, %s)
         """,
@@ -26,7 +26,7 @@ def get_goal_progress():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM goalprogress")
+    cursor.execute("SELECT * FROM GoalProgress")
 
     records = cursor.fetchall()
 

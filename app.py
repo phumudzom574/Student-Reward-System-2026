@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, send_file
+﻿from flask import Flask, render_template, request, redirect, session, send_file
 
 from participants import (
     add_participant,
