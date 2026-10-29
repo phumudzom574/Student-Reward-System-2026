@@ -10,13 +10,15 @@ from participants import (
 
 from point_rules import (
     add_point_rule,
-    get_point_rules
+    get_point_rules,
+    get_active_point_rules
 )
 
 from point_transactions import (
     add_transaction,
     get_transactions,
-    get_history
+    get_history,
+    get_leaderboard
 )
 
 from goals import (
@@ -28,8 +30,6 @@ from goal_progress import (
     add_goal_progress,
     get_goal_progress
 )
-
-from leaderboard import get_leaderboard
 
 from users import validate_user
 
@@ -278,23 +278,28 @@ def transaction():
 
         activity_date = request.form["activity_date"]
 
-        points = int(
-            request.form["points"]
-        )
-
         notes = request.form["notes"]
 
-        add_transaction(
-            participant_id,
-            rule_id,
-            activity_date,
-            points,
-            notes
-        )
+        try:
+            add_transaction(
+                participant_id,
+                rule_id,
+                activity_date,
+                notes
+            )
+        except ValueError as error:
+            return render_template(
+                "add_transaction.html",
+                rules=get_active_point_rules(),
+                error=str(error)
+            )
 
         return redirect("/transactions")
 
-    return render_template("add_transaction.html")
+    return render_template(
+        "add_transaction.html",
+        rules=get_active_point_rules()
+    )
 
 
 # =========================================================

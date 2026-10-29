@@ -1,84 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goal Progress</title>
-
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #003366;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: #003366;
-            color: white;
-            padding: 12px;
-            text-align: center;
-        }
-
-        td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-
-        tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-
-        .completed {
-            color: green;
-            font-weight: bold;
-        }
-
-        .not-completed {
-            color: red;
-            font-weight: bold;
-        }
-
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 15px;
-            text-decoration: none;
-            background: #003366;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-        }
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+        h1 { color: #003366; margin-bottom: 20px; }
+        .container { background: white; padding: 20px; border-radius: 10px;
+                     box-shadow: 0 2px 5px rgba(0,0,0,.1); overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #003366; color: white; padding: 12px; text-align: center; }
+        td { padding: 12px; border: 1px solid #ddd; text-align: center; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .completed { color: green; font-weight: bold; }
+        .not-completed { color: #b00020; font-weight: bold; }
+        .back-btn { display: inline-block; margin-bottom: 15px; text-decoration: none;
+                    background: #003366; color: white; padding: 10px 15px; border-radius: 5px; }
+        .empty { padding: 18px; color: #555; text-align: center; }
     </style>
-
 </head>
-
 <body>
-
     <a href="/" class="back-btn">Back to Dashboard</a>
-
     <div class="container">
-
         <h1>Goal Progress</h1>
-
         <table>
-
             <thead>
                 <tr>
                     <th>Progress ID</th>
@@ -88,38 +34,26 @@
                     <th>Completed</th>
                 </tr>
             </thead>
-
             <tbody>
-
                 {% for row in records %}
-
                 <tr>
-
-                    <td>{{ row[0] }}</td>
-
-                    <td>{{ row[2] }}</td>
-
-                    <td>{{ row[1] }}</td>
-
-                    <td>{{ row[3] }}</td>
-
+                    <td>{{ row['ProgressID'] }}</td>
+                    <td>{{ row['GoalID'] }}</td>
+                    <td>{{ row['ParticipantID'] }}</td>
+                    <td>{{ row['CurrentPoints'] }}</td>
                     <td>
-                        {% if row[4] == 1 %}
+                        {% if row['Completed'] == 1 %}
                             <span class="completed">Completed</span>
                         {% else %}
                             <span class="not-completed">Not Completed</span>
                         {% endif %}
                     </td>
-
                 </tr>
-
+                {% else %}
+                <tr><td class="empty" colspan="5">No goal progress records have been added yet.</td></tr>
                 {% endfor %}
-
             </tbody>
-
         </table>
-
     </div>
-
 </body>
 </html>
