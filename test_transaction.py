@@ -6,7 +6,7 @@ try:
 
     cursor.execute(
         """
-        INSERT INTO PointTransactions
+        INSERT INTO pointtransactions
         (ParticipantsID, RuleID, ActivityDate, Points, Notes)
         VALUES (?, ?, ?, ?, ?)
         """,

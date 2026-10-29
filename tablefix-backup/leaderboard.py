@@ -8,17 +8,17 @@ def get_leaderboard():
 
     cursor.execute("""
         SELECT
-            Participants.ParticipantID,
-            Participants.Name,
-            SUM(PointTransactions.Points) AS TotalPoints
-        FROM Participants
-        INNER JOIN PointTransactions
-            ON Participants.ParticipantID = PointTransactions.ParticipantID
+            participants.ParticipantID,
+            participants.Name,
+            SUM(pointtransactions.Points) AS TotalPoints
+        FROM participants
+        INNER JOIN pointtransactions
+            ON participants.ParticipantID = pointtransactions.ParticipantID
         GROUP BY
-            Participants.ParticipantID,
-            Participants.Name
+            participants.ParticipantID,
+            participants.Name
         ORDER BY
-            SUM(PointTransactions.Points) DESC
+            SUM(pointtransactions.Points) DESC
     """)
 
     records = cursor.fetchall()

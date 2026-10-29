@@ -8,7 +8,7 @@ def add_point_rule(activity_name, description, points, max_per_day, active):
 
     cursor.execute(
         """
-        INSERT INTO PointRules
+        INSERT INTO pointrules
         (ActivityName, Description, Points, MaxPerDay, Active)
         VALUES (%s, %s, %s, %s, %s)
         """,
@@ -25,7 +25,7 @@ def get_point_rules():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM PointRules")
+    cursor.execute("SELECT * FROM pointrules")
 
     rules = cursor.fetchall()
 

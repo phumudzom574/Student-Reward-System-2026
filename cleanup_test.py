@@ -5,7 +5,7 @@ try:
     cursor = conn.cursor()
 
     cursor.execute("""
-        DELETE FROM Participants
+        DELETE FROM participants
         WHERE ParticipantID IN (1, 2)
     """)
 
