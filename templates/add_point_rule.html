@@ -7,20 +7,24 @@
 
 <h2>Add Point Rule</h2>
 
+{% if error %}
+<p role="alert" style="color:red;">{{ error }}</p>
+{% endif %}
+
 <form method="POST">
 
 
 <label>Activity Name:</label>
-<input type="text" name="activity_name" required>
+<input type="text" name="activity_name" maxlength="100" required>
 
 <label>Description:</label>
 <input type="text" name="description" required>
 
 <label>Points:</label>
-<input type="number" name="points" required>
+<input type="number" name="points" min="1" step="1" required>
 
 <label>Max Per Day:</label>
-<input type="number" name="max_per_day" required>
+<input type="number" name="max_per_day" min="1" step="1" required>
 
 <label>Active:</label>
 <select name="active">
@@ -31,9 +35,6 @@
 <button type="submit">Save Rule</button>
 
 </form> 
-   
-
-</form>
 
 </body>
 </html>

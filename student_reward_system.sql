@@ -253,7 +253,15 @@ ALTER TABLE `users`
 --
 ALTER TABLE `goalprogress`
   ADD CONSTRAINT `goalprogress_ibfk_1` FOREIGN KEY (`ParticipantID`) REFERENCES `participants` (`ParticipantID`),
-  ADD CONSTRAINT `goalprogress_ibfk_2` FOREIGN KEY (`GoalID`) REFERENCES `goals` (`GoalID`);
+  ADD
+  
+  
+  
+  
+  
+  
+  
+  
 
 --
 -- Constraints for table `goals`

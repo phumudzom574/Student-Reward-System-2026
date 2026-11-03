@@ -206,32 +206,23 @@ def add_rule():
         return redirect("/login")
 
     if request.method == "POST":
+        active_value = request.form.get("active")
+        if active_value not in {"Yes", "No"}:
+            return render_template(
+                "add_point_rule.html",
+                error="Choose whether the point rule is active."
+            )
 
-        activity_name = request.form["activity_name"]
-
-        description = request.form["description"]
-
-        points = request.form["points"]
-
-        max_per_day = request.form["max_per_day"]
-
-        active = request.form["active"]
-
-        if active == "Yes":
-
-            active = True
-
-        else:
-
-            active = False
-
-        add_point_rule(
-            activity_name,
-            description,
-            points,
-            max_per_day,
-            active
-        )
+        try:
+            add_point_rule(
+                request.form.get("activity_name"),
+                request.form.get("description"),
+                request.form.get("points"),
+                request.form.get("max_per_day"),
+                active_value == "Yes"
+            )
+        except ValueError as error:
+            return render_template("add_point_rule.html", error=str(error))
 
         return redirect("/point_rules")
 
@@ -267,25 +258,12 @@ def transaction():
         return redirect("/login")
 
     if request.method == "POST":
-
-        participant_id = int(
-            request.form["participant_id"]
-        )
-
-        rule_id = int(
-            request.form["rule_id"]
-        )
-
-        activity_date = request.form["activity_date"]
-
-        notes = request.form["notes"]
-
         try:
             add_transaction(
-                participant_id,
-                rule_id,
-                activity_date,
-                notes
+                request.form.get("participant_id"),
+                request.form.get("rule_id"),
+                request.form.get("activity_date"),
+                request.form.get("notes")
             )
         except ValueError as error:
             return render_template(
@@ -349,21 +327,15 @@ def add_goal_page():
         return redirect("/login")
 
     if request.method == "POST":
-
-        participant_id = request.form["participant_id"]
-
-        start_date = request.form["start_date"]
-
-        end_date = request.form["end_date"]
-
-        target_points = request.form["target_points"]
-
-        add_goal(
-            participant_id,
-            start_date,
-            end_date,
-            target_points
-        )
+        try:
+            add_goal(
+                request.form.get("participant_id"),
+                request.form.get("start_date"),
+                request.form.get("end_date"),
+                request.form.get("target_points")
+            )
+        except ValueError as error:
+            return render_template("add_goal.html", error=str(error))
 
         return redirect("/goals")
 
