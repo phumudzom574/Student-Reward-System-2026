@@ -31,14 +31,11 @@ def add_point_rule(activity_name, description, points, max_per_day, active):
             SELECT COUNT(*)
             FROM pointrules
             WHERE LOWER(TRIM(ActivityName)) = LOWER(TRIM(%s))
-              AND LOWER(TRIM(Description)) = LOWER(TRIM(%s))
             """,
-            (activity_name, description)
+            (activity_name,)
         )
         if int(cursor.fetchone()[0]) > 0:
-            raise ValueError(
-                "A rule with this name and description already exists."
-            )
+            raise ValueError("A rule with this name already exists.")
 
         cursor.execute(
             """

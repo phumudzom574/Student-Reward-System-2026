@@ -208,18 +208,20 @@ class RewardValidationTests(unittest.TestCase):
 
                 get_connection.assert_not_called()
 
-    def test_duplicate_rule_is_rejected_case_and_whitespace_insensitively(self):
+    def test_duplicate_rule_name_is_rejected_case_and_whitespace_insensitively(
+        self
+    ):
         connection = FakeConnection([(1,)])
         with patch("point_rules.get_connection", return_value=connection):
             with self.assertRaisesRegex(ValueError, "already exists"):
                 point_rules.add_point_rule(
-                    "  Workshop  ", "  Attendance  ", "10", "1", True
+                    "  WORKSHOP  ", "Different description", "10", "1", True
                 )
 
         query, params = connection.fake_cursor.executed[0]
         self.assertIn("LOWER(TRIM(ActivityName))", query)
-        self.assertIn("LOWER(TRIM(Description))", query)
-        self.assertEqual(params, ("Workshop", "Attendance"))
+        self.assertNotIn("Description", query)
+        self.assertEqual(params, ("WORKSHOP",))
         self.assertTrue(connection.rolled_back)
         self.assertFalse(connection.committed)
         self.assertFalse(any(
