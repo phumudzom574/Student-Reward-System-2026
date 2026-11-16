@@ -1,0 +1,66 @@
+1
+00:00:00,000 --> 00:00:12,052
+Welcome. This is the Student Reward System: a web application for
+recognising participation, recording points, and making reward
+activity easier to review.
+
+2
+00:00:12,302 --> 00:00:28,094
+Participation and achievement deserve to be recognised consistently.
+When records and reward rules are difficult to review, it takes
+extra effort to see what has been awarded. This project brings those
+workflows into one place.
+
+3
+00:00:28,344 --> 00:00:45,096
+An administrator signs in and uses the browser interface. Flask
+handles the application routes and validation, while MySQL stores
+the system records. History and leaderboard views make recorded
+activity easier to review.
+
+4
+00:00:45,346 --> 00:01:01,863
+Administrators can manage participant records, configure point
+rules, and record awards using active activities. The system also
+provides transaction history, goals, manually entered progress, and
+reporting.
+
+5
+00:01:02,113 --> 00:01:19,174
+Point rules define activities, values, and daily limits. In this
+prepared screen, attendance is worth ten points and the active
+workshop rule is worth fifty points, with a limit of one per day.
+Inactive rules are also visible.
+
+6
+00:01:19,424 --> 00:01:35,141
+To award points, select a participant and an active activity, then
+record the transaction. The application checks awards against its
+rules, including inactive activities, duplicate awards, and daily
+limits.
+
+7
+00:01:35,391 --> 00:01:49,328
+The leaderboard summarizes recorded points so activity can be
+reviewed at a glance. This visual uses illustrative sample names and
+values for privacy; check the live application for current records.
+
+8
+00:01:49,578 --> 00:02:01,700
+Goals and progress are part of the system, with one important scope
+note: progress is entered manually. It is not automatically
+calculated from point transactions.
+
+9
+00:02:01,950 --> 00:02:16,143
+The project automated test run completed with twenty-nine tests
+passing. These checks cover unit behavior and schema expectations.
+They do not replace a live MySQL acceptance test.
+
+10
+00:02:16,393 --> 00:02:32,379
+The Student Reward System provides a practical foundation for
+managing participants, reward rules, point awards, and progress. Its
+history and leaderboard views help make recorded activity easier to
+review. Thank you.
+

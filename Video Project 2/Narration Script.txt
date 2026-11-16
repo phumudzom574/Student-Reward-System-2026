@@ -1,0 +1,48 @@
+01 — INTRODUCTION
+Welcome. This is the Student Reward System: a web application for recognising
+participation, recording points, and making reward activity easier to review.
+
+02 — THE NEED
+Participation and achievement deserve to be recognised consistently. When
+records and reward rules are difficult to review, it takes extra effort to see
+what has been awarded. This project brings those workflows into one place.
+
+03 — HOW IT WORKS
+An administrator signs in and uses the browser interface. Flask handles the
+application routes and validation, while MySQL stores the system records.
+History and leaderboard views make recorded activity easier to review.
+
+04 — CORE WORKFLOWS
+Administrators can manage participant records, configure point rules, and
+record awards using active activities. The system also provides transaction
+history, goals, manually entered progress, and reporting.
+
+05 — POINT RULES
+Point rules define activities, values, and daily limits. In this prepared
+screen, attendance is worth ten points and the active workshop rule is worth
+fifty points, with a limit of one per day. Inactive rules are also visible.
+
+06 — AWARD VALIDATION
+To award points, select a participant and an active activity, then record the
+transaction. The application checks awards against its rules, including
+inactive activities, duplicate awards, and daily limits.
+
+07 — LEADERBOARD
+The leaderboard summarizes recorded points so activity can be reviewed at a
+glance. This visual uses illustrative sample names and values for privacy;
+check the live application for current records.
+
+08 — GOALS AND PROGRESS
+Goals and progress are part of the system, with one important scope note:
+progress is entered manually. It is not automatically calculated from point
+transactions.
+
+09 — TESTING
+The project’s automated test run completed with twenty-nine tests passing.
+These checks cover unit behavior and schema expectations. They do not replace
+a live MySQL acceptance test.
+
+10 — CONCLUSION
+The Student Reward System provides a practical foundation for managing
+participants, reward rules, point awards, and progress. Its history and
+leaderboard views help make recorded activity easier to review. Thank you.
